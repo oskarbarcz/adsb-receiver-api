@@ -1,6 +1,11 @@
-import { INestApplication, ValidationPipe } from '@nestjs/common';
+import {
+  BadRequestException,
+  INestApplication,
+  ValidationPipe,
+} from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import * as pack from '../package.json';
+import { createResponseFromErrorsList } from './common/validation/exception.factory';
 
 export function configureApp(app: INestApplication): INestApplication {
   app.enableCors();
@@ -10,6 +15,8 @@ export function configureApp(app: INestApplication): INestApplication {
       whitelist: true,
       forbidNonWhitelisted: true,
       transformOptions: { enableImplicitConversion: true },
+      exceptionFactory: (errors) =>
+        new BadRequestException(createResponseFromErrorsList(errors)),
     }),
   );
 

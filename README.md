@@ -16,27 +16,20 @@ Main dependencies are Nest.js and Prisma ORM in versions listed below.
 | Vendor  | Version |
 | ------- | ------- |
 | Nest.js | ^11.1   |
-| Prisma  | ^6.7.0  |
 
 ## Infrastructure
 
-We use the following services:
-
-- AWS EC2 instance with Dokku, with:
-    - app container (docker container locally)
-    - PostgreSQL database (PostgreSQL container locally)
-
-Locally, they are set up using `docker compose`.
+Locally, environment is set up using `docker compose`.
 
 ### Setting project up
 
-This app uses docker-based virtualization to run. In order to set up project, follow these steps:
+This app uses docker-based virtualization to run. To set up project, follow these steps:
 
 1. Clone project by running:
     ```shell
     git clone git@github.com:oskarbarcz/nestjs-project-boilerplate.git
     ```
-2. Prepare environment variable file by copying .env.dist to .env and fill it with your data.
+2. Prepare environment variable file by copying `.env.dist` to `.env` and fill it with your data.
     ```shell
     cd nestjs-project-boilerplate
     cp .env.dist .env
@@ -66,7 +59,7 @@ This app uses docker-based virtualization to run. In order to set up project, fo
 >
 > It will execute the `npm run lint` command in the container shell.
 
-To shut down the containers run:
+To shut the containers run:
 
 ```shell
 docker compose down
@@ -90,7 +83,7 @@ just near the tested module, while functional tests are stored in the `features`
 ## Release & deploy
 
 > Before merging Pull Request to the main branch, make sure to bump the project version in the `package.json` file,
-> line `3`. Then it's a good practice to run `npm install` inside a docker container to update the `package-lock.json`
+> line `3`. Then it is a good practice to run `npm install` inside a docker container to update the `package-lock.json`
 > file.
 >
 > Not bumping the version will result in the release failure. There is a step in CI that will protect the main branch
