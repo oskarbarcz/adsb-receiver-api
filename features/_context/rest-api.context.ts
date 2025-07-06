@@ -65,9 +65,8 @@ Then('the response body should contain:', async function (docString: string) {
   deepCompare(actual, expected);
 });
 
-
 Then('I wait for {int} ms', async (milliseconds: number) => {
-  await new Promise(resolve => setTimeout(resolve, milliseconds));
+  await new Promise((resolve) => setTimeout(resolve, milliseconds));
 });
 
 Then('I dump response', () => {

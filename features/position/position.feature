@@ -1,5 +1,8 @@
-#Feature: I can set and get position report
-#
+Feature: I can set and get position report
+
+
+
+
 #  Scenario: As an admin I can create user
 #    When I send a "DELETE" request to "/api/v1/position/DLH1234"
 #    Then the response status should be 204

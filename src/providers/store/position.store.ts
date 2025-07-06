@@ -43,14 +43,16 @@ export class PositionStore {
   }
 
   async clearForCallsign(callsign: string): Promise<void> {
-    const store = await this.cacheManager.get<PositionStoreEntry>(this.CACHE_KEY);
+    const store = await this.cacheManager.get<PositionStoreEntry>(
+      this.CACHE_KEY,
+    );
 
     if (store === undefined) {
       return;
     }
 
     const filteredReports = store.reports.filter(
-      (report) => report.callsign !== callsign
+      (report) => report.callsign !== callsign,
     );
 
     await this.cacheManager.set(this.CACHE_KEY, { reports: filteredReports });
