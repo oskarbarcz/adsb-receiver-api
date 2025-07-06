@@ -41,7 +41,7 @@ export class PositionController {
   @ApiBody({ type: CreatePositionRequest })
   @ApiNoContentResponse()
   @HttpCode(HttpStatus.NO_CONTENT)
-  async clear(@Param() callsign: string): Promise<void> {
+  async clear(@Param('callsign') callsign: string): Promise<void> {
     await this.positionStore.clearForCallsign(callsign);
   }
 
