@@ -12,12 +12,16 @@ Given('I use seed data', () => {
   execSync('npx prisma migrate reset --force --skip-generate > /dev/null');
 });
 
+Given('I use client token', async () => {
+  apiToken = 'client-token';
+});
+
 Given('I use admin token', async () => {
   apiToken = 'admin-token';
 });
 
-Given('I use destructive actions token', async () => {
-  apiToken = 'destructive-actions-token';
+Given('I do not use token', async () => {
+  apiToken = null;
 });
 
 When(
@@ -28,7 +32,7 @@ When(
       method: method,
       url: url,
       validateStatus: () => true,
-      headers: apiToken === '' ? {} : { Authorization: `Bearer ${apiToken}` },
+      headers: apiToken ? { Authorization: `Bearer ${apiToken}` } : {},
     });
   },
 );
@@ -42,7 +46,7 @@ When(
       url: url,
       data: JSON.parse(body),
       validateStatus: () => true,
-      headers: apiToken === '' ? {} : { Authorization: `Bearer ${apiToken}` },
+      headers: apiToken ? { Authorization: `Bearer ${apiToken}` } : {},
     });
   },
 );

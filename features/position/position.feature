@@ -1,7 +1,13 @@
 Feature: I can set and get position report
 
-  Scenario: As an admin I can create user
-    Given I send a "DELETE" request to "/api/v1/position/DLH1234"
+  Scenario: I manage position report
+    # reset cache before test
+    Given I use admin token
+    When I send a "DELETE" request to "/api/v1/position/DLH1234"
+    Then the response status should be 204
+
+    # add position report
+    Given I use client token
     When I send a "POST" request to "/api/v1/position" with body:
       """json
       {
@@ -20,8 +26,12 @@ Feature: I can set and get position report
       }
       """
     Then the response status should be 204
+
+    # check position report
+    Given I do not use token
     When I send a "GET" request to "/api/v1/position/DLH1234"
-    Then the response body should contain:
+    Then the response status should be 200
+    And the response body should contain:
       """json
       [
         {
@@ -38,8 +48,14 @@ Feature: I can set and get position report
         }
       ]
       """
+
+    # clear after test
+    Given I use admin token
     When I send a "DELETE" request to "/api/v1/position/DLH1234"
     Then the response status should be 204
+
+    # check if position report is cleared
+    Given I do not use token
     When I send a "GET" request to "/api/v1/position/DLH1234"
     Then the response status should be 200
     And the response body should contain:

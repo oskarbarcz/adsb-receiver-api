@@ -1,4 +1,3 @@
 #!/usr/bin/env sh
 
-npm run database:migrate # execute database schema migrations
 npm run start # start app in production mode
