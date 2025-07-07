@@ -21,15 +21,12 @@ abstract class AbstractGuard implements CanActivate {
       throw new UnauthorizedException();
     }
 
-    console.log(token);
-
     return this.isTokenValid(token);
   }
 
   private extractTokenFromHeader(request: Request): string | undefined {
     const [type, token] = request.headers.authorization?.split(' ') ?? [];
 
-    console.log('Extracted token:', type, token);
     return type === 'Bearer' ? token : undefined;
   }
 
