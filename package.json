@@ -1,7 +1,7 @@
 {
   "name": "adsb-receiver-api",
-  "version": "0.3.0",
-  "description": "",
+  "version": "0.4.0",
+  "description": "Repository contains an ADS-B receiver API that receives data from virtual, flight-simulator-based sources.",
   "author": "oskarbarcz",
   "private": true,
   "license": "proprietary",
