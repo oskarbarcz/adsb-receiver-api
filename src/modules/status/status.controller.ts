@@ -1,5 +1,5 @@
 import { Controller, Get, HttpStatus } from '@nestjs/common';
-import { GetStatusResponse } from 'models/status/dto/get-status.dto';
+import { GetStatusResponse } from 'modules/status/dto/get-status.dto';
 import * as pack from '../../../package.json';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 

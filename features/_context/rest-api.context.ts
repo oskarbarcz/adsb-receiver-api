@@ -1,7 +1,7 @@
 import { When, Then, Given, After } from '@cucumber/cucumber';
 import axios, { AxiosResponse } from 'axios';
 import expect from 'expect';
-import { execSync } from 'child_process';
+import { spawnSync } from 'child_process';
 import { deepCompare } from '../_helper/deep-compare';
 
 const apiBaseUrl = 'http://localhost:3000';
@@ -9,7 +9,11 @@ let apiToken: string | null = null;
 let apiResponse: AxiosResponse;
 
 Given('I use seed data', () => {
-  execSync('npx prisma migrate reset --force --skip-generate > /dev/null');
+  spawnSync(
+    'npx',
+    ['prisma', 'migrate', 'reset', '--force', '--skip-generate'],
+    { stdio: 'ignore' },
+  );
 });
 
 Given('I use client token', async () => {

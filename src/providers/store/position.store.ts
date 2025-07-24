@@ -1,7 +1,7 @@
 import { CACHE_MANAGER } from '@nestjs/cache-manager';
 import { Cache } from 'cache-manager';
 import { Inject, Injectable } from '@nestjs/common';
-import { Position } from '../../models/position/entity/position.entity';
+import { Position } from '../../modules/position/entity/position.entity';
 
 type PositionStoreEntry = {
   reports: Position[];

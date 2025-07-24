@@ -11,8 +11,8 @@ import {
   Post,
   UseGuards,
 } from '@nestjs/common';
-import { ClientGuard, AdminGuard } from '../../common/auth/guard';
-import { UnauthorizedResponse } from '../../common/response/unauthorized.response';
+import { ClientGuard, AdminGuard } from '../../core/http/auth/guard';
+import { UnauthorizedResponse } from '../../core/http/response/unauthorized.response';
 
 @ApiTags('auth')
 @Controller('/api/v1/auth-check')
