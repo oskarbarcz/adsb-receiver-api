@@ -23,8 +23,8 @@ import {
   CreatePositionRequest,
   CreatePositionResponse,
 } from './dto/position.dto';
-import { AdminGuard, ClientGuard } from '../../common/auth/guard';
-import { UnauthorizedResponse } from '../../common/response/unauthorized.response';
+import { AdminGuard, ClientGuard } from '../../core/http/auth/guard';
+import { UnauthorizedResponse } from '../../core/http/response/unauthorized.response';
 
 @ApiTags('position')
 @Controller('/api/v1/position')

@@ -4,7 +4,7 @@ on:
   pull_request:
 
 jobs:
-  version:
+  code:
     runs-on: ubuntu-latest
     steps:
       - name: 'Checkout repository'
@@ -13,11 +13,6 @@ jobs:
           fetch-depth: 0
       - name: 'Check if image version is available to publish'
         run: './docker/ci/check_version_is_free "$(jq -r ''.version'' package.json)"'
-  code:
-    runs-on: ubuntu-latest
-    steps:
-      - name: 'Checkout repository'
-        uses: actions/checkout@v4
       - name: 'Copy environment variables'
         run: 'cp .env.dist .env'
       - name: 'Run docker compose environment'

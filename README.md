@@ -1,37 +1,32 @@
-# Nest.js project boilerplate nestjs-project-boilerplate
+![My Project Header](.github/image/header.png)
+
+# ADS-B receiver
+
+This repository is a part of the [Flight Tracker](https://flights.barcz.me) project.
 
 ## Repository contents
 
-Repository contains boilerplate project using Nest.js.
+Repository contains an ADS-B receiver API that receives data from virtual, flight-simulator-based sources. Project is
+using **Node.js** with **TypeScript**, with **Nest.js** framework and handles HTTP requests. It is close-to-real **ADS-B
+over HTTP** implementation, which can be used to test ADS-B clients or other applications that consume ADS-B data.
 
-Project is using Node.js and TypeScript in versions listed below:
-
-| Technology | Version |
-| ---------- | ------- |
-| Node.js    | 24.10   |
-| TypeScript | 5.8     |
-
-Main dependencies are Nest.js and Prisma ORM in versions listed below.
-
-| Vendor  | Version |
-| ------- | ------- |
-| Nest.js | ^11.1   |
+[![Technologies used in project](https://skillicons.dev/icons?i=nodejs,ts,nestjs,docker)](https://skillicons.dev)
 
 ## Infrastructure
 
 Locally, environment is set up using `docker compose`.
 
-### Setting project up
+### Setting the project up
 
-This app uses docker-based virtualization to run. To set up project, follow these steps:
+This app uses docker-based virtualization to run. To set up a project, follow these steps:
 
 1. Clone project by running:
     ```shell
-    git clone git@github.com:oskarbarcz/nestjs-project-boilerplate.git
+    git clone git@github.com:oskarbarcz/adsb-receiver-api.git
     ```
-2. Prepare environment variable file by copying `.env.dist` to `.env` and fill it with your data.
+2. Prepare an environment variable file by copying `.env.dist` to `.env` and fill it with your data.
     ```shell
-    cd nestjs-project-boilerplate
+    cd adsb-receiver-api
     cp .env.dist .env
     ```
 3. Use `docker compose` to set up the environment

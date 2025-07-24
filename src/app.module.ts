@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
-import { StatusController } from 'models/status/status.controller';
+import { StatusController } from 'modules/status/status.controller';
 import { CacheModule } from '@nestjs/cache-manager';
-import { AuthModule } from './models/auth/auth.module';
-import { PositionModule } from './models/position/position.module';
+import { AuthModule } from './modules/auth/auth.module';
+import { PositionModule } from './modules/position/position.module';
 
 @Module({
   imports: [
