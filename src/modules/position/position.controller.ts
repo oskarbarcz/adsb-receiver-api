@@ -10,6 +10,7 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import {
+  ApiBearerAuth,
   ApiBody,
   ApiNoContentResponse,
   ApiOkResponse,
@@ -32,6 +33,7 @@ export class PositionController {
   constructor(private readonly positionStore: PositionStore) {}
 
   @ApiOperation({ summary: 'Store aircraft position' })
+  @ApiBearerAuth('access-token')
   @ApiBody({ type: CreatePositionRequest })
   @ApiNoContentResponse()
   @ApiUnauthorizedResponse({ type: UnauthorizedResponse })
@@ -43,6 +45,7 @@ export class PositionController {
   }
 
   @ApiOperation({ summary: 'Store aircraft position' })
+  @ApiBearerAuth('access-token')
   @ApiBody({ type: CreatePositionRequest })
   @ApiNoContentResponse()
   @ApiUnauthorizedResponse({ type: UnauthorizedResponse })
