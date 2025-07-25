@@ -3,58 +3,42 @@ import { Cache } from 'cache-manager';
 import { Inject, Injectable } from '@nestjs/common';
 import { Position } from '../../modules/position/entity/position.entity';
 
-type PositionStoreEntry = {
-  reports: Position[];
-};
-
 @Injectable()
 export class PositionStore {
-  readonly CACHE_KEY = 'position_reports';
-
   constructor(@Inject(CACHE_MANAGER) private cacheManager: Cache) {}
 
   async getForCallsign(callsign: string): Promise<Position[]> {
-    const store = await this.cacheManager.get<PositionStoreEntry>(
-      this.CACHE_KEY,
+    const positions = await this.cacheManager.get<Position[]>(
+      this.getCacheKey(callsign),
     );
 
-    if (store === undefined) {
+    if (positions === undefined) {
       return [];
     }
 
-    return store.reports.filter((report) => report.callsign === callsign);
+    return positions;
   }
 
   async set(position: Position): Promise<void> {
-    let currentSet: PositionStoreEntry | undefined =
-      await this.cacheManager.get<PositionStoreEntry>(this.CACHE_KEY);
+    let currentPositions = await this.cacheManager.get<Position[]>(
+      this.getCacheKey(position.callsign),
+    );
 
-    if (currentSet === undefined) {
-      currentSet = { reports: [] };
+    if (currentPositions === undefined) {
+      currentPositions = [];
     }
 
-    currentSet.reports.push({
-      date: new Date().toISOString(),
-      latitude: position.latitude,
-      longitude: position.longitude,
-      callsign: position.callsign,
-    });
-    await this.cacheManager.set(this.CACHE_KEY, currentSet);
+    await this.cacheManager.set(this.getCacheKey(position.callsign), [
+      ...currentPositions,
+      { ...position, date: position.date ?? new Date().toISOString() },
+    ]);
   }
 
   async clearForCallsign(callsign: string): Promise<void> {
-    const store = await this.cacheManager.get<PositionStoreEntry>(
-      this.CACHE_KEY,
-    );
+    await this.cacheManager.del(this.getCacheKey(callsign));
+  }
 
-    if (store === undefined) {
-      return;
-    }
-
-    const filteredReports = store.reports.filter(
-      (report) => report.callsign !== callsign,
-    );
-
-    await this.cacheManager.set(this.CACHE_KEY, { reports: filteredReports });
+  private getCacheKey(callsign: string): string {
+    return `pos:${callsign}`;
   }
 }
