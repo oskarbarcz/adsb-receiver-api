@@ -50,7 +50,7 @@ export class Position {
     example: 1500,
   })
   @IsNumber()
-  verticalRate?: number;
+  verticalRate: number;
 
   @ApiProperty({
     description: 'The squawk code of the aircraft (4 digits, each 0-7)',
