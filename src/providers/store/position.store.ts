@@ -16,7 +16,9 @@ export class PositionStore {
       return [];
     }
 
-    return positions;
+    return positions.sort(
+      (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
+    );
   }
 
   async set(position: Position): Promise<void> {
