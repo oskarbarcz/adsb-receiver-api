@@ -27,6 +27,7 @@ Feature: I can get active callsigns
       """json
       {
         "callsign": "DLH1234",
+        "date": "2025-11-23T23:50:00.000Z",
         "latitude": 51.47115,
         "longitude": -0.47351,
         "altitude": 91.95149,
@@ -47,6 +48,7 @@ Feature: I can get active callsigns
       """json
       {
         "callsign": "UAL456",
+        "date": "2025-11-23T23:50:00.000Z",
         "latitude": 40.7128,
         "longitude": -74.0060,
         "altitude": 35000,
