@@ -24,6 +24,7 @@ import {
   CreatePositionRequest,
   CreatePositionResponse,
 } from './dto/position.dto';
+import { GetActiveCallsignsResponse } from './dto/active-callsigns.dto';
 import { AdminGuard, ClientGuard } from '../../core/http/auth/guard';
 import { UnauthorizedResponse } from '../../core/http/response/unauthorized.response';
 
@@ -54,6 +55,18 @@ export class PositionController {
   @HttpCode(HttpStatus.NO_CONTENT)
   async clear(@Param('callsign') callsign: string): Promise<void> {
     await this.positionStore.clearForCallsign(callsign);
+  }
+
+  @ApiOperation({
+    summary: 'Get active callsigns that logged in last 5 minutes',
+  })
+  @ApiOkResponse({
+    type: GetActiveCallsignsResponse,
+  })
+  @Get('/active')
+  async getActiveCallsigns(): Promise<GetActiveCallsignsResponse> {
+    const callsigns = await this.positionStore.getActiveCallsigns(5);
+    return { callsigns };
   }
 
   @ApiOperation({ summary: 'Get aircraft position by callsign' })
