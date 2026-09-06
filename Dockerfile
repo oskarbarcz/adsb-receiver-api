@@ -1,5 +1,6 @@
-FROM node:24-alpine AS alpine-node-base
+FROM node:26-alpine AS alpine-node-base
 RUN apk --no-cache add curl
+RUN npm install -g npm@12
 
 FROM alpine-node-base AS development
 WORKDIR /app
